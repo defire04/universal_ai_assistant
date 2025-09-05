@@ -1,8 +1,9 @@
 """Embedding generation via Ollama."""
 
-import ollama
 from typing import List
-from loguru import logger
+
+import ollama
+
 from app.core.config import config
 
 
@@ -18,4 +19,4 @@ class EmbeddingService:
             model=config.embedding_model,
             prompt=text
         )
-        return response['embedding']
+        return list(response['embedding'])

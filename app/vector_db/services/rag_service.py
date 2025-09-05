@@ -46,8 +46,10 @@ class RAGService:
         logger.info(f"Added {len(chunks)} chunks from {source}")
         return len(chunks)
 
-    async def search_context(self, query: str, top_k: int = 5) -> List[Dict]:
+    async def search_context(self, query: str, top_k: int = None) -> List[Dict]:
         """Search for relevant context."""
+        if top_k is None:
+            top_k = config.rag_top_k
         query_embedding = await self.embedding_service.embed_text(query)
         results = await self.vector_repo.search_similar(query_embedding, top_k)
 
@@ -57,9 +59,8 @@ class RAGService:
             logger.info(f"RAG: {len(results)} chunks from {sources}, scores: {scores}")
 
             if config.debug_rag:
-                for i, result in enumerate(results):
-                    preview = result["content"][:100] + "..." if len(result["content"]) > 100 else result["content"]
-                    logger.debug(f"RAG chunk {i}: {preview}")
+                full_context = "\n".join([f"Chunk {i}: {result['content']}" for i, result in enumerate(results)])
+                logger.debug(f"RAG Full Context:\n{full_context}")
         else:
             logger.warning("RAG: no relevant context found")
 

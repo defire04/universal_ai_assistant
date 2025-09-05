@@ -7,6 +7,7 @@ import asyncpg
 from app.ai.gemini import GeminiClient
 from app.core.config import config
 from app.core.logger import setup_logger
+from app.telegram.bot import create_bot
 from app.vector_db.repositories.vector_repository import VectorRepository
 from app.vector_db.services.embedding_service import EmbeddingService
 from app.vector_db.services.rag_service import RAGService
@@ -14,7 +15,7 @@ from app.vector_db.services.rag_service import RAGService
 
 async def main() -> None:
     """Main application."""
-    setup_logger()
+    setup_logger(config.log_level)
 
     pool = await asyncpg.create_pool(config.database_url)
     vector_repo = VectorRepository(pool)
@@ -26,12 +27,12 @@ async def main() -> None:
 
     gemini_client = GeminiClient()
 
-    QUESTION = "Когда день рождение у Олаби Дмитрия?"
-    context_results = await rag_service.search_context(QUESTION)
-    context = "\n".join([r["content"] for r in context_results])
+    bot, dp = await create_bot(rag_service, gemini_client)
 
-    response = await gemini_client.chat(QUESTION, context)
-    print(f"🤖 {response.content}")
+    try:
+        await dp.start_polling(bot)
+    finally:
+        await bot.session.close()
 
     await pool.close()
 

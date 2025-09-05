@@ -1,9 +1,9 @@
 """Loads application configuration from environment variables."""
 
-from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import ValidationError
-from loguru import logger
 import sys
+from typing import List
+from loguru import logger
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Config(BaseSettings):
@@ -33,12 +33,25 @@ class Config(BaseSettings):
     min_chunk_size: int = 250
     max_chunks: int = 10000
     debug_rag: bool = False
+    similarity_threshold: float = 0.5
+    rag_top_k: int = 5
 
     documents_folder: str = "./documents"
-    system_prompt: str = "Ты AI-ассистент. Отвечай ТОЛЬКО на основе предоставленного контекста. Если в контексте нет информации для ответа, скажи 'Информация не найдена в документах'."
-    rag_only_mode: bool = True
-    debug_rag: bool = False
+    system_prompt: str = "Ти дружелюбний AI-помічник співробітників ТОВ \"ТРЕЙД СЕРВІС АЛЬЯНС\". Відповідай українською мовою, будь ввічливим та надавай стислі та конкретні відповіді на основі наданої інформації. Відповідай лише на те, що запитують - не додавай зайву інформацію як ID, телефони чи електронну пошту, якщо про це не питають конкретно. Якщо інформація не знайдена в документах, скажи про це ввічливо."
 
+    # Logging Configuration
+    log_level: str = "INFO"
+
+    # Telegram Bot Configuration
+    telegram_bot_token: str = ""
+    allowed_user_ids: str = ""
+
+    @property
+    def allowed_users_list(self) -> List[int]:
+        """Returns list of allowed user IDs."""
+        if not self.allowed_user_ids:
+            return []
+        return [int(uid.strip()) for uid in self.allowed_user_ids.split(',') if uid.strip()]
 
     def __post_init__(self):
         """Validate required fields after initialization."""
@@ -47,6 +60,9 @@ class Config(BaseSettings):
             sys.exit(1)
         if not self.database_url:
             logger.error("DATABASE_URL is required in .env file")
+            sys.exit(1)
+        if not self.telegram_bot_token:
+            logger.error("TELEGRAM_BOT_TOKEN is required in .env file")
             sys.exit(1)
 
 

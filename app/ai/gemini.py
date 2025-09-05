@@ -22,15 +22,9 @@ class GeminiClient:
         """Send chat request to Gemini."""
         try:
             if context:
-                if config.rag_only_mode:
-                    prompt = f"{config.system_prompt}\n\nContext:\n{context}\n\nQuestion: {message}"
-                else:
-                    prompt = f"Context:\n{context}\n\nQuestion: {message}"
+                prompt = f"{config.system_prompt}\n\nContext:\n{context}\n\nQuestion: {message}"
             else:
-                if config.rag_only_mode:
-                    prompt = f"{config.system_prompt}\n\nQuestion: {message}\nContext: No context found."
-                else:
-                    prompt = message
+                prompt = f"{config.system_prompt}\n\nQuestion: {message}\nContext: No context found."
 
             response = self.model.generate_content(
                 prompt,

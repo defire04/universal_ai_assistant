@@ -4,6 +4,8 @@ import asyncpg
 import json
 from typing import List, Dict
 
+from app.core.config import config
+
 
 class VectorRepository:
     """Handles vector storage in PostgreSQL."""
@@ -51,10 +53,10 @@ class VectorRepository:
             rows = await conn.fetch("""
                 SELECT content, metadata, 1 - (embedding <=> $1::vector) as similarity
                 FROM vector_store
-                WHERE 1 - (embedding <=> $1::vector) > 0.3
+                WHERE 1 - (embedding <=> $1::vector) > $3
                 ORDER BY embedding <=> $1::vector
                 LIMIT $2
-            """, embedding_str, top_k)
+            """, embedding_str, top_k, config.similarity_threshold)
 
         return [{"content": row["content"],
                 "similarity": row["similarity"],
