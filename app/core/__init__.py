@@ -1,0 +1,1 @@
+"""Core components for configuration, logging, and shared utilities."""

@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres-universal-python-ai:
+    image: pgvector/pgvector:pg16
+    container_name: universal_ai_postgres
+    environment:
+      POSTGRES_DB: universal_ai
+      POSTGRES_USER: ai_user
+      POSTGRES_PASSWORD: ai_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - universal_ai_postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: universal_ai_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@universal.ai
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres-universal-python-ai
+    restart: unless-stopped
+
+volumes:
+  universal_ai_postgres_data:
