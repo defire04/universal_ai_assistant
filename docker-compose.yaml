@@ -26,5 +26,13 @@ services:
       - postgres-universal-python-ai
     restart: unless-stopped
 
+  ollama:
+    image: ollama/ollama
+    container_name: ollama-service
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
 volumes:
   universal_ai_postgres_data:
