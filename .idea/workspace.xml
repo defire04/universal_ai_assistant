@@ -4,25 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74f6ae07-97db-403a-80ed-49272be10cad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/universal_ai_assistant.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/ai/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/ai/gemini.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/ai/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/logger.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/vector_db/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/vector_db/reader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/vector_db/vector_store.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    <list default="true" id="74f6ae07-97db-403a-80ed-49272be10cad" name="Changes" comment="feat: implement universal AI assistant with RAG system using Gemini and PGVector&#10;&#10;- Built modular Python application with pydantic-settings configuration management and SOLID architecture principles&#10;- Integrated Google Gemini API for chat functionality with temperature control and comprehensive error handling&#10;- Implemented RAG (Retrieval-Augmented Generation) system using Ollama embeddings and PGVector database for semantic search&#10;- Created document processing pipeline supporting PDF and TXT files with automatic chunking strategy&#10;- Set up PostgreSQL with pgvector extension using Docker Compose for vector storage and similarity search operations&#10;- Developed CLI interface with commands for bulk document loading and RAG-enabled querying functionality">
+      <change afterPath="$PROJECT_DIR$/app/vector_db/repositories/vector_repository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vector_db/services/embedding_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vector_db/services/rag_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ai/gemini.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/ai/gemini.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ai/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/ai/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/vector_db/vector_store.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,6 +131,19 @@
       <option name="presentableId" value="Default" />
       <updated>1756982253837</updated>
     </task>
+    <task id="LOCAL-00001" summary="feat: implement universal AI assistant with RAG system using Gemini and PGVector&#10;&#10;- Built modular Python application with pydantic-settings configuration management and SOLID architecture principles&#10;- Integrated Google Gemini API for chat functionality with temperature control and comprehensive error handling&#10;- Implemented RAG (Retrieval-Augmented Generation) system using Ollama embeddings and PGVector database for semantic search&#10;- Created document processing pipeline supporting PDF and TXT files with automatic chunking strategy&#10;- Set up PostgreSQL with pgvector extension using Docker Compose for vector storage and similarity search operations&#10;- Developed CLI interface with commands for bulk document loading and RAG-enabled querying functionality">
+      <option name="closed" value="true" />
+      <created>1757079440521</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1757079440521</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: implement universal AI assistant with RAG system using Gemini and PGVector&#10;&#10;- Built modular Python application with pydantic-settings configuration management and SOLID architecture principles&#10;- Integrated Google Gemini API for chat functionality with temperature control and comprehensive error handling&#10;- Implemented RAG (Retrieval-Augmented Generation) system using Ollama embeddings and PGVector database for semantic search&#10;- Created document processing pipeline supporting PDF and TXT files with automatic chunking strategy&#10;- Set up PostgreSQL with pgvector extension using Docker Compose for vector storage and similarity search operations&#10;- Developed CLI interface with commands for bulk document loading and RAG-enabled querying functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: implement universal AI assistant with RAG system using Gemini and PGVector&#10;&#10;- Built modular Python application with pydantic-settings configuration management and SOLID architecture principles&#10;- Integrated Google Gemini API for chat functionality with temperature control and comprehensive error handling&#10;- Implemented RAG (Retrieval-Augmented Generation) system using Ollama embeddings and PGVector database for semantic search&#10;- Created document processing pipeline supporting PDF and TXT files with automatic chunking strategy&#10;- Set up PostgreSQL with pgvector extension using Docker Compose for vector storage and similarity search operations&#10;- Developed CLI interface with commands for bulk document loading and RAG-enabled querying functionality" />
   </component>
 </project>

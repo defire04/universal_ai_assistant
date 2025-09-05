@@ -1,20 +1,18 @@
-"""Defines Pydantic models for AI request and response handling."""
+"""AI request/response models."""
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 
 class ChatRequest(BaseModel):
-    """Represents a chat request to AI model."""
-
+    """Chat request to AI."""
     message: str
-    temperature: Optional[float] = None
     use_rag: bool = False
+    temperature: Optional[float] = None
 
 
 class ChatResponse(BaseModel):
-    """Represents AI model response with metadata."""
-
+    """AI response with metadata."""
     content: str
     model: str
     success: bool = True

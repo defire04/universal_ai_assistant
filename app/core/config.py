@@ -32,6 +32,13 @@ class Config(BaseSettings):
     chunk_size: int = 1200
     min_chunk_size: int = 250
     max_chunks: int = 10000
+    debug_rag: bool = False
+
+    documents_folder: str = "./documents"
+    system_prompt: str = "Ты AI-ассистент. Отвечай ТОЛЬКО на основе предоставленного контекста. Если в контексте нет информации для ответа, скажи 'Информация не найдена в документах'."
+    rag_only_mode: bool = True
+    debug_rag: bool = False
+
 
     def __post_init__(self):
         """Validate required fields after initialization."""
