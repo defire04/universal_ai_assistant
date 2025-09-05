@@ -7,10 +7,8 @@ from loguru import logger
 def setup_logger(log_level: str = "INFO") -> None:
     """Configures loguru for application-wide logging."""
 
-    # Remove default handler
     logger.remove()
 
-    # Add custom handler with configurable level
     logger.add(
         sys.stdout,
         level=log_level.upper(),

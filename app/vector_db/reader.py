@@ -1,8 +1,8 @@
 """Simple document reader."""
 
 from pathlib import Path
+
 import PyPDF2
-from loguru import logger
 
 
 class DocumentReader:

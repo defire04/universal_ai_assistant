@@ -1,8 +1,9 @@
 """PostgreSQL vector operations."""
 
-import asyncpg
 import json
 from typing import List, Dict
+
+import asyncpg
 
 from app.core.config import config
 
@@ -30,9 +31,8 @@ class VectorRepository:
                 ON vector_store USING hnsw (embedding vector_cosine_ops);
             """)
 
-
     async def save_chunk(self, chunk_id: str, content: str,
-                        embedding: List[float], metadata: Dict) -> None:
+                         embedding: List[float], metadata: Dict) -> None:
         """Save chunk with embedding to database."""
         embedding_str = "[" + ",".join(map(str, embedding)) + "]"
 
@@ -45,7 +45,7 @@ class VectorRepository:
             """, chunk_id, content, json.dumps(metadata), embedding_str)
 
     async def search_similar(self, query_embedding: List[float],
-                           top_k: int = 5) -> List[Dict]:
+                             top_k: int = 5) -> List[Dict]:
         """Search for similar vectors."""
         embedding_str = "[" + ",".join(map(str, query_embedding)) + "]"
 
@@ -59,5 +59,5 @@ class VectorRepository:
             """, embedding_str, top_k, config.similarity_threshold)
 
         return [{"content": row["content"],
-                "similarity": row["similarity"],
-                "metadata": json.loads(row["metadata"])} for row in rows]
+                 "similarity": row["similarity"],
+                 "metadata": json.loads(row["metadata"])} for row in rows]

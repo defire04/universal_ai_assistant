@@ -37,10 +37,15 @@ class Config(BaseSettings):
     rag_top_k: int = 5
 
     documents_folder: str = "./documents"
-    system_prompt: str = "Ти дружелюбний AI-помічник співробітників ТОВ \"ТРЕЙД СЕРВІС АЛЬЯНС\". Відповідай українською мовою, будь ввічливим та надавай стислі та конкретні відповіді на основі наданої інформації. Відповідай лише на те, що запитують - не додавай зайву інформацію як ID, телефони чи електронну пошту, якщо про це не питають конкретно. Якщо інформація не знайдена в документах, скажи про це ввічливо."
+    system_prompt: str = "You are a friendly AI employee assistant. Be polite and provide concise and specific answers based on the information provided. Answer only what is asked - do not add unnecessary information like ID, phones or e-mail, if it is not asked specifically. If the information is not found in the documents, say so politely."
 
     # Logging Configuration
     log_level: str = "INFO"
+
+    # Context Memory Configuration
+    context_memory_enabled: bool = False
+    context_messages_limit: int = 5
+    context_token_limit: int = 4000
 
     # Telegram Bot Configuration
     telegram_bot_token: str = ""
